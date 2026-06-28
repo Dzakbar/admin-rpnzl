@@ -1,0 +1,17 @@
+<?php
+
+return [
+    'paths' => ['api/*', 'storage/*'],
+    'allowed_methods' => ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
+    'allowed_origins' => [
+        env('FRONTEND_URL', 'http://localhost:5173'),
+        env('FRONTEND_URL_ALT', 'http://127.0.0.1:5173'),
+        'http://localhost:5174',  // Dev port alternative
+        'http://127.0.0.1:5174',  // Dev port alternative
+    ],
+    'allowed_origins_patterns' => [],
+    'allowed_headers' => ['*'],
+    'exposed_headers' => [],
+    'max_age' => 0,
+    'supports_credentials' => false,
+];

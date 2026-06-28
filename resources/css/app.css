@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css');
+
+@import "tailwindcss";
+
+@theme {
+  --color-pink-ultra: #FDF0F5;
+  --color-pink-light: #F5D0DF;
+  --color-pink-soft: #E8A4BB;
+  --color-pink-mid: #B5678A;
+  --color-pink-deep: #6B2D45;
+  --color-pink-dark: #3D1F2B;
+
+  --color-gold-pale: #FAF3DC;
+  --color-gold-light: #EDD98A;
+  --color-gold-base: #C9A84C;
+  --color-gold-deep: #9A7A28;
+
+  --color-plum-900: #1E0D16;
+  --color-plum-800: #2E1420;
+  --color-plum-700: #3D1F2B;
+  --color-plum-600: #4A1E30;
+
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Jost", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply text-gray-800 bg-pink-ultra antialiased;
+  }
+}
