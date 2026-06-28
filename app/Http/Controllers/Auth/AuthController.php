@@ -14,7 +14,7 @@ class AuthController extends Controller
         if (Auth::check()) {
             return Auth::user()->isAdmin()
                 ? redirect()->route('admin.dashboard')
-                : redirect()->route('home');
+                : redirect()->route('booking.index');
         }
 
         return inertia('Auth/Login');
@@ -33,7 +33,7 @@ class AuthController extends Controller
 
             return $user->isAdmin()
                 ? redirect()->route('admin.dashboard')
-                : redirect()->intended(route('home'));
+                : redirect()->intended(route('booking.index'));
         }
 
         return back()->withErrors(['email' => 'Email atau password salah.']);
@@ -60,7 +60,7 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
-        return redirect()->route('home');
+        return redirect()->route('booking.index');
     }
 
     public function logout(Request $request)
@@ -68,6 +68,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('home');
+        return redirect()->route('login');
     }
 }
