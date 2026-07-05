@@ -7,6 +7,9 @@ function normalizeVercelApiRequestUri(): void
 {
     $requestUri = $_SERVER['REQUEST_URI'] ?? '';
 
+    $_SERVER['SCRIPT_NAME'] = '/index.php';
+    $_SERVER['PHP_SELF'] = '/index.php';
+
     if ($requestUri === '' || str_starts_with($requestUri, '/api/')) {
         return;
     }
