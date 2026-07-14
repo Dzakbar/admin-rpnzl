@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BookingController as ApiBookingController;
 use App\Http\Controllers\Api\CompanyProfileController;
 use App\Http\Controllers\Api\TestimonialController;
@@ -9,6 +10,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/company-profile', [CompanyProfileController::class, 'show'])
     ->name('api.company-profile');
+
+Route::post('/auth/register', [AuthController::class, 'register'])
+    ->name('api.auth.register');
+Route::post('/auth/login', [AuthController::class, 'login'])
+    ->name('api.auth.login');
+Route::post('/auth/google', [AuthController::class, 'googleLogin'])
+    ->name('api.auth.google');
 
 Route::post('/bookings', [ApiBookingController::class, 'store'])
     ->name('api.bookings.store');
