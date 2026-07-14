@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Invoice;
 use App\Models\Schedule;
+use App\Models\Testimonial;
 
 class DashboardController extends Controller
 {
@@ -22,6 +23,7 @@ class DashboardController extends Controller
             'available_dates'     => Schedule::available()
                                              ->where('booking_date', '>=', today())
                                              ->count(),
+            'pending_testimonials' => Testimonial::where('status', Testimonial::STATUS_PENDING)->count(),
         ];
 
         $salesChart = Invoice::selectRaw(

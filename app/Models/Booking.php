@@ -37,6 +37,11 @@ class Booking extends Model
         return $this->hasOne(Invoice::class);
     }
 
+    public function testimonial(): HasOne
+    {
+        return $this->hasOne(Testimonial::class);
+    }
+
     public function isPending(): bool    { return $this->status === 'pending'; }
     public function isConfirmed(): bool  { return $this->status === 'confirmed'; }
 }

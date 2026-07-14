@@ -10,11 +10,12 @@ export default function Dashboard({ stats, salesChart, recentBookings }) {
   return (
     <AdminLayout title="Dashboard">
       {/* Stat cards */}
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 mb-8">
         <StatCard label="Booking pending"     value={stats.pending_bookings}       icon="ti-clock"        color="red" />
         <StatCard label="Booking bulan ini"   value={stats.bookings_this_month}    icon="ti-calendar"     color="pink" />
         <StatCard label="Total revenue"       value={formatRp(stats.total_revenue)} icon="ti-currency-dollar" color="gold" />
         <StatCard label="Jadwal tersedia"     value={`${stats.available_dates} hari`} icon="ti-check"    color="green" />
+        <StatCard label="Testimoni pending"   value={stats.pending_testimonials}   icon="ti-star"         color="gold" />
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">

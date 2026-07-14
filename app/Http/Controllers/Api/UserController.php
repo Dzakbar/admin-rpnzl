@@ -17,14 +17,17 @@ class UserController extends Controller
         }
 
         $bookings = Booking::with(['user', 'package', 'schedule', 'invoice'])
+            ->withExists('testimonial')
             ->whereHas('user', fn($q) => $q->where('email', $email))
             ->latest()
             ->get()
             ->map(fn($b) => [
                 'id' => $b->id,
                 'status' => $b->status,
+                'package_id' => $b->package_id,
                 'customer_name' => $b->customer_name ?? $b->user->name,
                 'package_name' => $b->package->package_name,
+                'has_testimonial' => (bool) $b->testimonial_exists,
                 'booking_date' => $b->schedule->booking_date->format('Y-m-d'),
                 'booking_time' => $b->schedule->timeLabel(),
                 'event_type' => $b->event_type,

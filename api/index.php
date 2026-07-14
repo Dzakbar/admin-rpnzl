@@ -18,7 +18,7 @@ function normalizeVercelApiRequestUri(): void
     $query = parse_url($requestUri, PHP_URL_QUERY);
     $firstSegment = explode('/', ltrim($path, '/'))[0] ?? '';
 
-    if (! in_array($firstSegment, ['company-profile', 'bookings', 'schedules', 'user'], true)) {
+    if (! in_array($firstSegment, ['company-profile', 'bookings', 'testimonials', 'schedules', 'user'], true)) {
         return;
     }
 

@@ -33,6 +33,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/bookings/{booking}',     [Admin\BookingController::class, 'show'])->name('bookings.show');
     Route::patch('/bookings/{booking}/status', [Admin\BookingController::class, 'updateStatus'])->name('bookings.status');
 
+    // Testimonial management
+    Route::get('/testimonials', [Admin\TestimonialController::class, 'index'])->name('testimonials.index');
+    Route::patch('/testimonials/{testimonial}/status', [Admin\TestimonialController::class, 'updateStatus'])->name('testimonials.status');
+    Route::patch('/testimonials/{testimonial}/featured', [Admin\TestimonialController::class, 'toggleFeatured'])->name('testimonials.featured');
+    Route::delete('/testimonials/{testimonial}', [Admin\TestimonialController::class, 'destroy'])->name('testimonials.destroy');
+
     // Schedule management
     Route::get('/schedule',                         [Admin\ScheduleController::class, 'index'])->name('schedule.index');
     Route::post('/schedule',                        [Admin\ScheduleController::class, 'store'])->name('schedule.store');

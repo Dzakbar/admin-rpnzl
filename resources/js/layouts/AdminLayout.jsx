@@ -7,6 +7,7 @@ import clsx from 'clsx'
 const NAV = [
   { label: 'Dashboard',  href: '/admin',           icon: 'ti-dashboard' },
   { label: 'Booking',    href: '/admin/bookings',  icon: 'ti-calendar-check' },
+  { label: 'Testimoni',  href: '/admin/testimonials', icon: 'ti-star' },
   { label: 'Jadwal',     href: '/admin/schedule',  icon: 'ti-calendar-event' },
   { label: 'Invoice',    href: '/admin/invoices',  icon: 'ti-file-invoice' },
   {

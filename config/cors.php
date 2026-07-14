@@ -5,6 +5,8 @@ return [
         'api/*',
         'company-profile',
         'bookings',
+        'testimonials',
+        'testimonials/*',
         'schedules/*',
         'user/bookings',
         'storage/*',
