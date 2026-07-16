@@ -59,11 +59,11 @@ export default function Packages({ packages }) {
 
   return (
     <AdminLayout title="Kelola Paket Layanan">
-      <div className="flex justify-end mb-4">
+      <div className="flex mb-4 sm:justify-end">
         <Button onClick={() => openForm()} variant="gold"><i className="ti ti-plus" /> Tambah Paket</Button>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
         {packages.map(p => (
           <div key={p.id} className="bg-white rounded-xl border border-gray-100 overflow-hidden flex flex-col">
             {p.image_url ? (
@@ -74,8 +74,8 @@ export default function Packages({ packages }) {
               </div>
             )}
             <div className="p-5 flex-1 flex flex-col">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="font-display text-xl text-plum-800 font-medium">{p.package_name}</h3>
+              <div className="flex gap-3 justify-between items-start mb-2">
+                <h3 className="font-display text-xl text-plum-800 font-medium leading-tight">{p.package_name}</h3>
                 <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${p.status === 'active' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-gray-500'}`}>
                   {p.status === 'active' ? 'Aktif' : 'Nonaktif'}
                 </span>
@@ -93,12 +93,12 @@ export default function Packages({ packages }) {
 
       {editing && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-          <div className="bg-white rounded-2xl w-full max-w-lg overflow-hidden shadow-xl">
+          <div className="bg-white rounded-2xl w-full max-w-lg max-h-[92vh] overflow-hidden shadow-xl">
             <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
               <h3 className="text-lg font-medium">{editing === 'new' ? 'Tambah Paket' : 'Edit Paket'}</h3>
               <button onClick={closeForm} className="text-gray-400 hover:text-gray-600"><i className="ti ti-x" /></button>
             </div>
-            <form onSubmit={submit} className="p-6 space-y-4">
+            <form onSubmit={submit} className="p-4 space-y-4 overflow-y-auto max-h-[calc(92vh-65px)] sm:p-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Nama Paket</label>
                 <input type="text" value={data.package_name} onChange={e => setData('package_name', e.target.value)} required className="w-full border-gray-300 rounded-md shadow-sm p-2 border" />
@@ -111,7 +111,7 @@ export default function Packages({ packages }) {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
                 <textarea value={data.description} onChange={e => setData('description', e.target.value)} required rows="3" className="w-full border-gray-300 rounded-md shadow-sm p-2 border" />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
                   <select value={data.status} onChange={e => setData('status', e.target.value)} className="w-full border-gray-300 rounded-md shadow-sm p-2 border">
@@ -124,7 +124,7 @@ export default function Packages({ packages }) {
                   <input type="file" onChange={e => setData('image', e.target.files[0])} className="w-full border border-gray-300 rounded-md p-1.5 text-sm" accept="image/*" />
                 </div>
               </div>
-              <div className="pt-4 flex justify-end gap-3">
+              <div className="pt-4 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
                 <Button type="button" variant="ghost" onClick={closeForm}>Batal</Button>
                 <Button type="submit" variant="primary" disabled={processing}>Simpan</Button>
               </div>

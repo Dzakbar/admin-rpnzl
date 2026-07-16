@@ -31,11 +31,11 @@ export default function Gallery({ gallery }) {
 
   return (
     <AdminLayout title="Kelola Gallery">
-      <div className="flex justify-end mb-6">
+      <div className="flex mb-6 sm:justify-end">
         <Button onClick={() => setShowUpload(true)} variant="gold"><i className="ti ti-upload" /> Upload Foto</Button>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
         {gallery.map(g => (
           <div key={g.id} className="relative group rounded-xl overflow-hidden aspect-square bg-gray-100">
             <img src={g.image_url} alt={g.caption} className="w-full h-full object-cover" />
@@ -61,12 +61,12 @@ export default function Gallery({ gallery }) {
 
       {showUpload && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-          <div className="bg-white rounded-2xl w-full max-w-sm overflow-hidden shadow-xl">
+          <div className="bg-white rounded-2xl w-full max-w-sm max-h-[92vh] overflow-hidden shadow-xl">
             <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
               <h3 className="text-lg font-medium">Upload Foto</h3>
               <button onClick={() => setShowUpload(false)} className="text-gray-400 hover:text-gray-600"><i className="ti ti-x" /></button>
             </div>
-            <form onSubmit={submit} className="p-6 space-y-4">
+            <form onSubmit={submit} className="p-4 space-y-4 overflow-y-auto max-h-[calc(92vh-65px)] sm:p-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">File Foto</label>
                 <input type="file" onChange={e => setData('image', e.target.files[0])} required className="w-full border border-gray-300 rounded-md p-1.5 text-sm" accept="image/*" />
@@ -83,7 +83,7 @@ export default function Gallery({ gallery }) {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Caption</label>
                 <input type="text" value={data.caption} onChange={e => setData('caption', e.target.value)} className="w-full border-gray-300 rounded-md shadow-sm p-2 border text-sm" />
               </div>
-              <div className="pt-4 flex justify-end gap-3">
+              <div className="pt-4 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
                 <Button type="button" variant="ghost" onClick={() => setShowUpload(false)}>Batal</Button>
                 <Button type="submit" variant="primary" disabled={processing}>Upload</Button>
               </div>

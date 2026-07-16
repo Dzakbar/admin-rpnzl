@@ -56,7 +56,7 @@ export default function TestimonialsIndex({ testimonials, filters }) {
 
   return (
     <AdminLayout title="Manajemen Testimoni">
-      <div className="mb-6 grid gap-3 lg:grid-cols-[minmax(0,1fr)_160px_150px_150px_auto]">
+      <div className="mb-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_160px_150px_150px_auto]">
         <input
           value={search}
           onChange={e => setSearch(e.target.value)}
@@ -108,7 +108,8 @@ export default function TestimonialsIndex({ testimonials, filters }) {
       </div>
 
       <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
-        <table className="w-full text-sm">
+        <div className="overflow-x-auto">
+        <table className="min-w-[980px] w-full text-sm">
           <thead className="bg-gray-50 border-b border-gray-100">
             <tr>
               {['Pelanggan', 'Rating', 'Testimoni', 'Paket', 'Status', 'Aksi'].map(header => (
@@ -185,12 +186,13 @@ export default function TestimonialsIndex({ testimonials, filters }) {
             ))}
           </tbody>
         </table>
+        </div>
 
-        <div className="flex items-center justify-between px-5 py-4 border-t border-gray-100">
+        <div className="flex flex-col gap-3 px-4 py-4 border-t border-gray-100 sm:flex-row sm:items-center sm:justify-between sm:px-5">
           <p className="text-xs text-gray-500 font-medium">
             Halaman {testimonials.current_page} dari {testimonials.last_page} - Menampilkan {testimonials.from ?? 0}-{testimonials.to ?? 0} dari {testimonials.total} testimoni
           </p>
-          <div className="flex gap-2">
+          <div className="flex gap-2 overflow-x-auto pb-1 sm:pb-0">
             {testimonials.links.map((link, index) => (
               <Link
                 key={index}

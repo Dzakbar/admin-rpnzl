@@ -5,7 +5,8 @@ export default function UsersIndex({ users }) {
   return (
     <AdminLayout title="Pelanggan">
       <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
-        <table className="w-full text-sm">
+        <div className="overflow-x-auto">
+        <table className="min-w-[760px] w-full text-sm">
           <thead className="bg-gray-50 border-b border-gray-100">
             <tr>
               {['Nama', 'Email', 'WhatsApp', 'Total Booking', 'Bergabung'].map(h => (
@@ -31,13 +32,14 @@ export default function UsersIndex({ users }) {
             ))}
           </tbody>
         </table>
+        </div>
 
         {/* Pagination */}
-        <div className="flex items-center justify-between px-5 py-4 border-t border-gray-100">
+        <div className="flex flex-col gap-3 px-4 py-4 border-t border-gray-100 sm:flex-row sm:items-center sm:justify-between sm:px-5">
           <p className="text-xs text-gray-400">
             Menampilkan {users.from || 0}–{users.to || 0} dari {users.total}
           </p>
-          <div className="flex gap-1">
+          <div className="flex gap-1 overflow-x-auto pb-1 sm:pb-0">
             {users.links.map((link, idx) => (
               <Link key={idx} href={link.url ?? '#'}
                 className={`px-3 py-1.5 text-xs rounded-md border transition-colors ${

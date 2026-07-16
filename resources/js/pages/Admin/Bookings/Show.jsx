@@ -69,16 +69,16 @@ export default function BookingShow({ booking }) {
         onCancel={handleModalCancel}
         isLoading={isSubmittingStatus}
       />
-      <div className="max-w-2xl space-y-5">
+      <div className="max-w-5xl space-y-5">
 
         {/* Status & Actions */}
-        <div className="bg-white rounded-xl border border-gray-100 p-5 flex items-center justify-between">
+        <div className="bg-white rounded-xl border border-gray-100 p-4 flex flex-col gap-4 sm:p-5 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-xs text-gray-400 mb-1">Status saat ini</p>
             <Badge status={booking.status} />
           </div>
            {booking.status === 'pending' && (
-             <div className="flex gap-3">
+             <div className="flex flex-col gap-3 sm:flex-row">
                <Button variant="danger"  onClick={() => openStatusModal('rejected')}>
                  <i className="ti ti-x" aria-hidden="true" /> Tolak
                </Button>
@@ -112,7 +112,7 @@ export default function BookingShow({ booking }) {
 
         {/* Notes */}
         {booking.customization_notes && (
-          <div className="bg-white rounded-xl border border-gray-100 p-5">
+          <div className="bg-white rounded-xl border border-gray-100 p-4 sm:p-5">
             <p className="text-xs text-gray-400 mb-2 font-medium uppercase tracking-wide">Catatan kustomisasi</p>
             <p className="text-sm text-gray-700 leading-relaxed">{booking.customization_notes}</p>
           </div>
@@ -121,8 +121,8 @@ export default function BookingShow({ booking }) {
         {/* Invoice */}
         {booking.invoice && (
           <div className="space-y-3">
-            <div className="bg-gold-pale rounded-xl border border-gold-base/20 p-5">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-gold-pale rounded-xl border border-gold-base/20 p-4 sm:p-5">
+              <div className="flex flex-col gap-3 mb-4 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-xs text-gold-deep font-medium">Invoice #{booking.invoice.invoice_number}</p>
                 <a href={booking.invoice.pdf_url} target="_blank" rel="noreferrer">
                   <Button variant="gold" size="sm"><i className="ti ti-download" aria-hidden="true" /> Download PDF</Button>
@@ -130,14 +130,14 @@ export default function BookingShow({ booking }) {
               </div>
 
               <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
+                <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
                   <span className="text-gray-400">Harga paket</span>
                   <span className="font-medium text-gray-700">Rp {Number(booking.invoice.total_price).toLocaleString('id-ID')}</span>
                 </div>
 
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <span className="text-gray-400 shrink-0">Ongkir</span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="text-gray-400 text-xs">Rp</span>
                     <input
                       type="text"
@@ -149,7 +149,7 @@ export default function BookingShow({ booking }) {
                         setShippingCost(val === '' ? 0 : Number(val))
                       }}
                       placeholder="0"
-                      className="w-32 border border-gold-base/30 rounded-lg px-3 py-1.5 text-sm text-gray-700 text-right focus:outline-none focus:border-gold-base"
+                      className="w-32 max-w-full border border-gold-base/30 rounded-lg px-3 py-1.5 text-sm text-gray-700 text-right focus:outline-none focus:border-gold-base"
                     />
                     <Button
                       variant="outline"
@@ -162,7 +162,7 @@ export default function BookingShow({ booking }) {
                   </div>
                 </div>
 
-                <div className="border-t border-gold-base/20 pt-2 flex justify-between font-semibold text-plum-800">
+                <div className="border-t border-gold-base/20 pt-2 flex flex-col gap-1 font-semibold text-plum-800 sm:flex-row sm:justify-between">
                   <span>Grand Total</span>
                   <span>Rp {grandTotal.toLocaleString('id-ID')}</span>
                 </div>
@@ -177,7 +177,7 @@ export default function BookingShow({ booking }) {
 
 function InfoCard({ title, icon, children }) {
   return (
-    <div className="bg-white rounded-xl border border-gray-100 p-5">
+    <div className="bg-white rounded-xl border border-gray-100 p-4 sm:p-5">
       <div className="flex items-center gap-2 mb-4">
         <i className={`ti ${icon} text-gold-base text-lg`} aria-hidden="true" />
         <h3 className="text-sm font-medium text-gray-700">{title}</h3>
@@ -189,9 +189,9 @@ function InfoCard({ title, icon, children }) {
 
 function Row({ label, value }) {
   return (
-    <div className="flex justify-between text-sm">
+    <div className="flex flex-col gap-1 text-sm sm:flex-row sm:justify-between">
       <span className="text-gray-400">{label}</span>
-      <span className="text-gray-700 font-medium text-right max-w-xs">{value}</span>
+      <span className="text-gray-700 font-medium break-words sm:max-w-xs sm:text-right">{value}</span>
     </div>
   )
 }

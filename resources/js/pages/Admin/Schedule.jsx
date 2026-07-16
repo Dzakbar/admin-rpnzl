@@ -105,13 +105,13 @@ export default function Schedule({ schedules, year, month }) {
   return (
     <AdminLayout title="Manajemen Jadwal">
       <div className="grid lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-100 p-5">
-          <div className="flex items-center justify-between mb-6 bg-gray-50 p-2 rounded-lg">
-            <button onClick={() => changeMonth(-1)} className="px-3 py-1 hover:bg-gray-200 rounded text-sm">
+        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-100 p-4 sm:p-5">
+          <div className="flex flex-col gap-2 mb-6 bg-gray-50 p-2 rounded-lg sm:flex-row sm:items-center sm:justify-between">
+            <button onClick={() => changeMonth(-1)} className="px-3 py-2 hover:bg-gray-200 rounded text-sm">
               &lt; Sebelumnya
             </button>
-            <h2 className="font-medium text-gray-800">{MONTHS[month - 1]} {year}</h2>
-            <button onClick={() => changeMonth(1)} className="px-3 py-1 hover:bg-gray-200 rounded text-sm">
+            <h2 className="font-medium text-gray-800 text-center">{MONTHS[month - 1]} {year}</h2>
+            <button onClick={() => changeMonth(1)} className="px-3 py-2 hover:bg-gray-200 rounded text-sm">
               Selanjutnya &gt;
             </button>
           </div>
@@ -132,7 +132,7 @@ export default function Schedule({ schedules, year, month }) {
             <div className="space-y-5">
               {Object.entries(groupedSchedules).map(([date, slots]) => (
                 <div key={date}>
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex flex-wrap items-center gap-3 mb-2">
                     <p className="font-medium text-gray-900">{date}</p>
                     <span className="text-xs text-gray-400">{slots.length} slot</span>
                   </div>
@@ -152,7 +152,7 @@ export default function Schedule({ schedules, year, month }) {
                             {slot.notes ? ` - ${slot.notes}` : ''}
                           </p>
                         </div>
-                        <div className="flex items-center gap-2 shrink-0">
+                        <div className="flex flex-wrap items-center gap-3 shrink-0 md:justify-end">
                           {slot.status !== 'available' && slot.booking_count === 0 && (
                             <button onClick={() => openSlot(slot)} className="text-xs font-medium text-emerald-600 hover:text-emerald-700">
                               Buka
@@ -175,7 +175,7 @@ export default function Schedule({ schedules, year, month }) {
         </div>
 
         <div>
-          <div className="bg-white rounded-xl border border-gray-100 p-5 sticky top-6">
+          <div className="bg-white rounded-xl border border-gray-100 p-4 sm:p-5 lg:sticky lg:top-20">
             <div className="flex items-start justify-between gap-3 mb-4">
               <div>
                 <h3 className="text-sm font-medium text-gray-800">{editingId ? 'Edit Slot' : 'Tambah Slot'}</h3>

@@ -19,8 +19,8 @@ export default function OngkirModal({ isOpen, status, onConfirm, onCancel, isLoa
   const statusLabel = status === 'confirmed' ? 'mengkonfirmasi' : 'menolak'
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div className="bg-white rounded-2xl max-w-sm w-full mx-4 p-6 shadow-lg">
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl max-w-sm w-full p-5 shadow-lg sm:p-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-2">
           Konfirmasi {statusLabel === 'mengkonfirmasi' ? 'Booking' : 'Penolakan'}
         </h3>
@@ -55,7 +55,7 @@ export default function OngkirModal({ isOpen, status, onConfirm, onCancel, isLoa
           </p>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex flex-col-reverse gap-3 sm:flex-row">
           <Button
             variant="outline"
             className="flex-1"
