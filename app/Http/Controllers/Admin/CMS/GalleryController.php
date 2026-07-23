@@ -26,7 +26,7 @@ class GalleryController extends Controller
         $request->validate([
             'image'    => 'required|image|max:3072',
             'caption'  => 'nullable|string|max:255',
-            'category' => 'required|in:gold,maroon,nude',
+            'category' => 'required|in:white,nude-semi-gold,maroon,pink-rose',
         ]);
 
         $path = $request->file('image')->store('gallery', config('filesystems.public_uploads_disk'));

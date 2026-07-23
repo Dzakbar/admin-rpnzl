@@ -30,21 +30,27 @@ class DatabaseSeeder extends Seeder
 
         $packages = [
             [
-                'package_name' => 'Gold Henna',
-                'description' => 'Detail putih lembut dengan aksen gold untuk look bridal yang glowing.',
+                'package_name' => 'White Henna',
+                'description' => 'Detail putih yang lembut untuk tampilan bridal yang clean dan elegan.',
                 'price' => 450000,
                 'status' => 'active',
             ],
             [
-                'package_name' => 'Maroon Henna',
-                'description' => 'Warna maroon yang lebih tegas untuk motif elegan dan klasik.',
+                'package_name' => 'Nude Semi Gold Henna',
+                'description' => 'Nuansa nude natural dengan aksen gold yang halus dan mewah.',
+                'price' => 400000,
+                'status' => 'active',
+            ],
+            [
+                'package_name' => 'Henna Maroon',
+                'description' => 'Warna maroon yang tegas untuk motif elegan dan klasik.',
                 'price' => 380000,
                 'status' => 'active',
             ],
             [
-                'package_name' => 'Nude Henna',
-                'description' => 'Nuansa nude yang halus untuk hasil clean, manis, dan modern.',
-                'price' => 320000,
+                'package_name' => 'Pink Rose Henna',
+                'description' => 'Pink rose yang manis untuk tampilan henna yang lembut dan romantis.',
+                'price' => 350000,
                 'status' => 'active',
             ],
         ];
@@ -56,7 +62,14 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-        Package::whereIn('package_name', ['Bridal Henna', 'Party Henna', 'Event Henna'])
+        Package::whereIn('package_name', [
+            'Gold Henna',
+            'Maroon Henna',
+            'Nude Henna',
+            'Bridal Henna',
+            'Party Henna',
+            'Event Henna',
+        ])
             ->update(['status' => 'inactive']);
 
         $contents = [

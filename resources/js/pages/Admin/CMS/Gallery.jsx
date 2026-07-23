@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 export default function Gallery({ gallery }) {
   const [showUpload, setShowUpload] = useState(false)
   const { data, setData, post, processing, reset } = useForm({
-    image: null, caption: '', category: 'gold'
+    image: null, caption: '', category: 'white'
   })
 
   const submit = (e) => {
@@ -74,9 +74,10 @@ export default function Gallery({ gallery }) {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
                 <select value={data.category} onChange={e => setData('category', e.target.value)} required className="w-full border-gray-300 rounded-md shadow-sm p-2 border text-sm">
-                  <option value="gold">Gold Henna</option>
-                  <option value="maroon">Maroon Henna</option>
-                  <option value="nude">Nude Henna</option>
+                  <option value="white">White Henna</option>
+                  <option value="nude-semi-gold">Nude Semi Gold Henna</option>
+                  <option value="maroon">Henna Maroon</option>
+                  <option value="pink-rose">Pink Rose Henna</option>
                 </select>
               </div>
               <div>

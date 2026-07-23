@@ -23,7 +23,7 @@ class CompanyProfileController extends Controller
             ->whereIn('package_name', $categories->pluck('name'))
             ->oldest()
             ->get()
-            ->keyBy(fn (Package $package) => $this->categoryId($package->package_name));
+            ->keyBy('package_name');
 
         $galleryItems = Gallery::query()
             ->whereIn('category', $categories->pluck('id'))
@@ -40,7 +40,7 @@ class CompanyProfileController extends Controller
             ]);
 
         $categoryPayload = $categories->map(function (array $category) use ($packages, $galleryItems) {
-            $package = $packages->get($category['id']);
+            $package = $packages->get($category['name']);
             $categoryGallery = $galleryItems->where('category', $category['id'])->values();
 
             return [
@@ -110,40 +110,41 @@ class CompanyProfileController extends Controller
     {
         return [
             [
-                'id' => 'gold',
-                'slug' => 'gold',
-                'name' => 'Gold Henna',
-                'tone' => 'Warm shimmer',
-                'color' => '#d8b765',
-                'short_description' => 'Detail putih lembut dengan aksen gold untuk look bridal yang glowing.',
-                'description' => 'Detail putih lembut dengan aksen gold untuk look bridal yang glowing.',
+                'id' => 'white',
+                'slug' => 'white',
+                'name' => 'White Henna',
+                'tone' => 'Soft white',
+                'color' => '#efe9e2',
+                'short_description' => 'Detail putih yang lembut untuk tampilan bridal yang clean dan elegan.',
+                'description' => 'Detail putih yang lembut untuk tampilan bridal yang clean dan elegan.',
+            ],
+            [
+                'id' => 'nude-semi-gold',
+                'slug' => 'nude-semi-gold',
+                'name' => 'Nude Semi Gold Henna',
+                'tone' => 'Warm glow',
+                'color' => '#c7a169',
+                'short_description' => 'Nuansa nude natural dengan aksen gold yang halus dan mewah.',
+                'description' => 'Nuansa nude natural dengan aksen gold yang halus dan mewah.',
             ],
             [
                 'id' => 'maroon',
                 'slug' => 'maroon',
-                'name' => 'Maroon Henna',
+                'name' => 'Henna Maroon',
                 'tone' => 'Deep romantic',
                 'color' => '#7b2f3c',
-                'short_description' => 'Warna maroon yang lebih tegas untuk motif elegan dan klasik.',
-                'description' => 'Warna maroon yang lebih tegas untuk motif elegan dan klasik.',
+                'short_description' => 'Warna maroon yang tegas untuk motif elegan dan klasik.',
+                'description' => 'Warna maroon yang tegas untuk motif elegan dan klasik.',
             ],
             [
-                'id' => 'nude',
-                'slug' => 'nude',
-                'name' => 'Nude Henna',
-                'tone' => 'Soft natural',
-                'color' => '#c9a08f',
-                'short_description' => 'Nuansa nude yang halus untuk hasil clean, manis, dan modern.',
-                'description' => 'Nuansa nude yang halus untuk hasil clean, manis, dan modern.',
+                'id' => 'pink-rose',
+                'slug' => 'pink-rose',
+                'name' => 'Pink Rose Henna',
+                'tone' => 'Romantic rose',
+                'color' => '#d8899d',
+                'short_description' => 'Pink rose yang manis untuk tampilan henna yang lembut dan romantis.',
+                'description' => 'Pink rose yang manis untuk tampilan henna yang lembut dan romantis.',
             ],
         ];
-    }
-
-    private function categoryId(string $packageName): string
-    {
-        return Str::of($packageName)
-            ->lower()
-            ->before(' henna')
-            ->toString();
     }
 }
